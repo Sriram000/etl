@@ -1,4 +1,4 @@
-import  {item, shop, minimum} from './command.mjs';
+import  {item, shop, bestShops} from './command.mjs';
 
 const testItem = () => {
     const result = item("Apple");
@@ -10,12 +10,12 @@ const testShop = () => {
     console.log(result); 
 }
 
-const testMinimum = () => {
-    const result = minimum("20");
+const testBestShops = () => {
+    const result = bestShops("Carrot");
     console.log(result);
 }
 
 testItem();
 testShop();
-testMinimum();
+testBestShops();
 
