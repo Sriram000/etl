@@ -1,4 +1,4 @@
-import  {item, shop, bestShops} from './command.mjs';
+import  {item, shop, bestShops, bestItems} from './command.mjs';
 
 const testItem = () => {
     const result = item("Apple");
@@ -15,7 +15,13 @@ const testBestShops = () => {
     console.log(result);
 }
 
+const testBestItems = () => {
+    const result = bestItems("shop1");
+    console.log(result);
+}
+
 testItem();
 testShop();
 testBestShops();
+testBestItems();
 
