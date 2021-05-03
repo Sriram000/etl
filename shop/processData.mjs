@@ -1,17 +1,6 @@
 import denormalizeShops from './denormalizeShops.mjs';
 import buildItemPriceMatrix from './buildItemPriceMatrix.mjs';
-
-const getMinimumPrices = (priceMatrix) => {
-    const minimumPrices = {};
-    const itemNames = Object.keys(priceMatrix);
-
-    itemNames.map((itemName) => {
-        const shopPrices = Object.values(priceMatrix[itemName]);
-        minimumPrices[itemName] = Math.min(...shopPrices);
-    });
-
-    return minimumPrices;
-}
+import getMinimumPrices from './getMinimumPrices.mjs';
 
 const getMaximumPrices = (priceMatrix) => {
     const maximumPrices = {};
