@@ -1,12 +1,12 @@
 import  {item, shop, minimum} from './command.mjs';
 
 const testItem = () => {
-    const result = item("carrot");
+    const result = item("Apple");
     console.log(result);
 }
 
 const testShop = () => {
-    const result = shop("Shop1");
+    const result = shop("shop2");
     console.log(result); 
 }
 
