@@ -1,4 +1,4 @@
-const flatten = (data) => [].concat.apply([], data);
+import denormalizeShops from './denormalizeShops.mjs';
 
 const getMinimumPrices = (priceMatrix) => {
     const minimumPrices = {};
@@ -36,21 +36,11 @@ const buildPriceMatrix = (denormalized) => {
     return priceMatrix;
 }
 
-const getItems = (shops) => {
-    const { shopName, items} = shops;
-
-    return items.map((item) => ({
-        shopName, ...item,
-    }));
-}
-
-const denormalize = (shops) => flatten(shops.map(getItems)); 
-
 const getShopName = (shops) => shops.shopName; 
 
 const processData = (shops) => {
     const shopNames = shops.map(getShopName);
-    const denormalized = denormalize(shops);
+    const denormalized = denormalizeShops(shops);
     const priceMatrix = buildPriceMatrix(denormalized);
     const minimumPrices = getMinimumPrices(priceMatrix);
     const maximumPrices = getMaximumPrices(priceMatrix);
