@@ -1,13 +1,13 @@
-const flatten = (data) => [].concat.apply([], data);
+import { flatten } from './lib.mjs';
 
-const getItems = (shops) => {
-    const { shopName, items} = shops;
-
-    return items.map((item) => ({
-        shopName, ...item,
-    }));
-}
-
-const denormalizeShops = (shops) => flatten(shops.map(getItems)); 
-
+const denormalizeShops = (shops) => flatten(
+    shops.map((shops) => {
+        const { shopName, items} = shops;
+        
+        return items.map((item) => ({
+            shopName, ...item,
+        }));
+    })
+); 
+    
 export default denormalizeShops;
