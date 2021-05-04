@@ -22,16 +22,7 @@ const matrix = (denormalized, ...keys) => {
   return root;
 }
 
-const dictToLines = (dict) => {
-  const keys = Object.keys(dict);
-  let result = "";
-
-  keys.forEach((key) => {
-    const value = dict[key];
-    result += key + ": " + value + "\n";
-  });
-
-  return result;
-} 
+const dictToLines = (dict) =>
+  Object.keys(dict).map((key) => key + ": " + dict[key]).join("\n");
 
 export { unique, flatten, matrix, dictToLines };
