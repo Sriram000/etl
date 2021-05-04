@@ -1,4 +1,7 @@
 import { flatten, matrix } from "./lib.mjs";
+import utils from '@laufire/utils';
+
+const { map, values } = utils.collection;
 
 const buildItemPriceMatrix = (denormalized) =>
     matrix(denormalized, 'item', 'shopName', 'price');
@@ -16,29 +19,11 @@ const denormalizeShops = (shops) => flatten(
     })
 ); 
   
-const getMinimumPrices = (priceMatrix) => {
-    const minimumPrices = {};
-    const itemNames = Object.keys(priceMatrix);
+const getMinimumPrices = (priceMatrix) =>
+    map(priceMatrix, (prices) => Math.min(...values(prices)));
 
-    itemNames.map((itemName) => {
-        const shopPrices = Object.values(priceMatrix[itemName]);
-        minimumPrices[itemName] = Math.min(...shopPrices);
-    });
-
-    return minimumPrices;
-}
-
-const getMaximumPrices = (priceMatrix) => {
-  const maximumPrices = {};
-  const itemNames = Object.keys(priceMatrix);
-
-  itemNames.map((itemName) => {
-      const shopPrices = Object.values(priceMatrix[itemName]);
-      maximumPrices[itemName] = Math.max(...shopPrices);
-  });
-
-  return maximumPrices;
-}
+const getMaximumPrices = (priceMatrix) =>
+    map(priceMatrix, (prices) => Math.max(...values(prices)));
 
 export {
     buildItemPriceMatrix, buildShopPriceMatrix,
