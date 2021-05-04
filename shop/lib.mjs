@@ -4,8 +4,7 @@ const flatten = (data) => [].concat.apply([], data);
 
 const matrix = (denormalized, ...keys) => {
   const branchKeys = keys.slice(0, -2);
-  const leafKey = keys.slice(-2, -1)[0];
-  const valueKey = keys.slice(-1)[0];
+  const [leafKey, valueKey] = keys.slice(-2);
   const root = {};
 
   denormalized.forEach((item) => {
