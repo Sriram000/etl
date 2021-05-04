@@ -7,14 +7,9 @@ const Actions = {
     "bestItems": bestItems,
 }
 
-var getHelpText = function(command) {
-    
-    let helpText = "Unknown command: " + command +  "\n\nAvailable Commands:\n";
-    var availableCommands = Object.keys(Actions);
-    availableCommands.forEach(element => helpText += "  " + element +  "\n");
-
-    return helpText;
-}
+var getHelpText = (command) => "Unknown command: " + command 
+    +  "\n\nAvailable Commands:\n  " 
+    +  Object.keys(Actions).join("\n  ");
 
 const main = () => {
     const command = process.argv[2];
