@@ -7,7 +7,6 @@ import getMinimumPrices from './getMinimumPrices.mjs';
 const item = (item) => {
     const denormalized = denormalizeShops(shops);
     const priceMatrix = buildItemPriceMatrix(denormalized);
-    console.log(priceMatrix);
     
     return priceMatrix[item];
 }
@@ -15,10 +14,8 @@ const item = (item) => {
 const shop = (shop) => {
     const denormalized = denormalizeShops(shops);
     const priceMatrix = buildShopPriceMatrix(denormalized);
-    console.log(priceMatrix);
 
     return priceMatrix[shop];
-
 }
 
 const bestShops = (item) => {
@@ -45,7 +42,6 @@ const bestItems = (shopName) => {
     const minimumPrices = getMinimumPrices(priceMatrix);
 
     const items = denormalized.filter((items) => items.shopName === shopName);
-    console.log(items);
     const result = {};
     
     items.map((data) => {
@@ -56,7 +52,6 @@ const bestItems = (shopName) => {
     })
 
     return result;
-
 }
 
 export { item, shop, bestShops, bestItems };
