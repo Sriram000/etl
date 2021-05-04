@@ -1,5 +1,6 @@
 import promptSync from 'prompt-sync';
 import  { item, shop, bestShops, bestItems } from './command.mjs';
+import { dictToLines } from './lib.mjs';
 
 const prompt = promptSync();
 
@@ -30,7 +31,7 @@ const main = function() {
             }
             else {
                 const param = prompt("param:");
-                const result = action(param);
+                const result = dictToLines(action(param));
                 
                 console.log(result);
             }

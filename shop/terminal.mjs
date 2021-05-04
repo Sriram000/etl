@@ -1,4 +1,5 @@
-import  { item, shop, bestShops, bestItems } from './command.mjs';
+import { item, shop, bestShops, bestItems } from './command.mjs';
+import { dictToLines } from './lib.mjs';
 
 const Actions = {
     "item": item,
@@ -17,7 +18,7 @@ const main = () => {
     const action = Actions[command];
 
     const result = action !== undefined 
-        ? action(param1) 
+        ? dictToLines(action(param1)) 
         : getHelpText(command);
         
     console.log(result);

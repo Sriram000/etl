@@ -10,21 +10,21 @@ const {
     shopMinimumPrices,
 } = crunchData(shops);
 
-const item = (item) => itemPriceMatrix[item];
+const item = (item) => itemPriceMatrix[item] || {};
 
-const shop = (shop) => shopPriceMatrix[shop];
+const shop = (shop) => shopPriceMatrix[shop] || {};
 
 const bestShops = (item) => matrix(
     denormalized.filter((data) =>
         data.item === item && data.price === itemMinimumPrices[item]),
     'shopName', 'price'
-);
+) || {};
 
 const bestItems = (shopName) => {
     const filtered = denormalized.filter((data) =>
         data.shopName === shopName && data.price === shopMinimumPrices[shopName]);
     
-    return matrix(filtered, 'item', 'price');
+    return matrix(filtered, 'item', 'price') || {};
 }
 
 export { item, shop, bestShops, bestItems };
