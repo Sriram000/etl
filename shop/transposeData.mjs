@@ -1,5 +1,5 @@
-import denormalizeShops from './denormalizeShops.mjs';
 import { unique } from './lib.mjs';
+import { denormalizeShops } from './helpers.mjs';
 
 const transposeData = (shops) => {
     const denormalized = denormalizeShops(shops);

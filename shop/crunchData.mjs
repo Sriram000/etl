@@ -1,7 +1,7 @@
-import buildItemPriceMatrix from './buildItemPriceMatrix.mjs';
-import buildShopPriceMatrix from './buildShopPriceMatrix.mjs';
-import denormalizeShops from './denormalizeShops.mjs';
-import getMinimumPrices from './getMinimumPrices.mjs';
+import {
+    buildItemPriceMatrix, buildShopPriceMatrix,
+    denormalizeShops, getMinimumPrices
+} from './helpers.mjs';
 
 const crunchData = (shops) => {
     const denormalized = denormalizeShops(shops);
@@ -20,4 +20,3 @@ const crunchData = (shops) => {
 }
 
 export default crunchData;
-
