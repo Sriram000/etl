@@ -25,16 +25,12 @@ const main = function() {
         }
         else {
             const action = Actions[command];
-            
-            if(action === undefined) {
-                getHelpText(command);
-            }
-            else {
-                const param = prompt("param:");
-                const result = dictToLines(action(param));
+
+            const result = action !== undefined 
+                ? dictToLines(action(prompt("param:"))) 
+                : getHelpText(command);
                 
-                console.log(result);
-            }
+            console.log(result);
         }     
     }
 }
