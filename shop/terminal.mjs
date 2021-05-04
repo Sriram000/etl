@@ -1,9 +1,6 @@
 import commands from './command.mjs';
 import { dictToLines } from './lib.mjs';
-
-var getHelpText = (command) => "Unknown command: " + command 
-    +  "\n\nAvailable Commands:\n  " 
-    +  Object.keys(commands).join("\n  ");
+import getHelpText from './getHelpText.mjs';
 
 const main = () => {
     const command = process.argv[2];

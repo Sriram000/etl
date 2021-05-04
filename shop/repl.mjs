@@ -1,12 +1,9 @@
 import promptSync from 'prompt-sync';
 import commands from './command.mjs';
 import { dictToLines } from './lib.mjs';
+import getHelpText from './getHelpText.mjs';
 
 const prompt = promptSync();
-
-const getHelpText = (command) => "Unknown command: " + command 
-    +  "\n\nAvailable Commands:\n  " 
-    +  Object.keys(commands).join("\n  ");
 
 const main = function() {
     
