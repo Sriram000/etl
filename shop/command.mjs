@@ -1,4 +1,5 @@
 import shops from './shops.mjs';
+import { matrix } from "./lib.mjs";
 import buildItemPriceMatrix from './buildItemPriceMatrix.mjs';
 import buildShopPriceMatrix from './buildShopPriceMatrix.mjs';
 import denormalizeShops from './denormalizeShops.mjs';
@@ -23,17 +24,11 @@ const bestShops = (item) => {
     const priceMatrix = buildItemPriceMatrix(denormalized);
     const minimumPrices = getMinimumPrices(priceMatrix);
 
-    const items = denormalized.filter((items) => items.item === item);
+    const filtered = denormalized.filter((items) =>
+        items.item === item && item.price === minimumPrices[item]);
     const result = {};
     
-    items.map((data) => {
-        const { shopName, price } = data;
-        if(price === minimumPrices[item]) {
-            result[shopName] = price;
-        }
-    })
-
-    return result;
+    return matrix(filtered, 'shopName', 'price');;
 }
 
 const bestItems = (shopName) => {
@@ -41,17 +36,10 @@ const bestItems = (shopName) => {
     const priceMatrix = buildShopPriceMatrix(denormalized);
     const minimumPrices = getMinimumPrices(priceMatrix);
 
-    const items = denormalized.filter((items) => items.shopName === shopName);
-    const result = {};
+    const filtered = denormalized.filter((item) =>
+        item.shopName === shopName && item.price === minimumPrices[shopName]);
     
-    items.map((data) => {
-        const { item, price } = data;
-        if(price === minimumPrices[shopName]) {
-            result[item] = price;
-        }
-    })
-
-    return result;
+    return matrix(filtered, 'item', 'price');
 }
 
 export { item, shop, bestShops, bestItems };

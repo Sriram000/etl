@@ -1,13 +1,6 @@
-const buildItemPriceMatrix = (denormalized) => {
-    const priceMatrix = {};
+import { matrix } from "./lib.mjs";
 
-    denormalized.map((items) => {
-        const { shopName, item, price} = items;
-        priceMatrix[item] = priceMatrix[item] || {};
-        priceMatrix[item][shopName] = price;
-    });
-
-    return priceMatrix;
-}
+const buildItemPriceMatrix = (denormalized) =>
+    matrix(denormalized, 'item', 'shopName', 'price');
 
 export default buildItemPriceMatrix;
