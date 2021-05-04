@@ -1,4 +1,6 @@
-import  {item, shop, bestShops, bestItems} from './command.mjs';
+import commands from './command.mjs';
+
+const {item, shop, bestShops, bestItems} = commands;
 
 const testItem = () => {
     const result = item("Apple");

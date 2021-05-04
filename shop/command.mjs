@@ -27,4 +27,11 @@ const bestItems = (shopName) => {
     return matrix(filtered, 'item', 'price') || {};
 }
 
-export { item, shop, bestShops, bestItems };
+const commands = {
+    item,
+    shop,
+    bestShops,
+    bestItems,
+}
+
+export default commands;

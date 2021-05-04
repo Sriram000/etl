@@ -1,19 +1,12 @@
 import promptSync from 'prompt-sync';
-import  { item, shop, bestShops, bestItems } from './command.mjs';
+import commands from './command.mjs';
 import { dictToLines } from './lib.mjs';
 
 const prompt = promptSync();
 
-const Actions = {
-    "item": item,
-    "shop": shop,
-    "bestShops": bestShops,
-    "bestItems": bestItems,
-}
-
 const getHelpText = (command) => "Unknown command: " + command 
     +  "\n\nAvailable Commands:\n  " 
-    +  Object.keys(Actions).join("\n  ");
+    +  Object.keys(commands).join("\n  ");
 
 const main = function() {
     
@@ -24,7 +17,7 @@ const main = function() {
             break;
         }
         else {
-            const action = Actions[command];
+            const action = commands[command];
 
             const result = action !== undefined 
                 ? dictToLines(action(prompt("param:"))) 

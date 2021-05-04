@@ -1,21 +1,14 @@
-import { item, shop, bestShops, bestItems } from './command.mjs';
+import commands from './command.mjs';
 import { dictToLines } from './lib.mjs';
-
-const Actions = {
-    "item": item,
-    "shop": shop,
-    "bestShops": bestShops,
-    "bestItems": bestItems,
-}
 
 var getHelpText = (command) => "Unknown command: " + command 
     +  "\n\nAvailable Commands:\n  " 
-    +  Object.keys(Actions).join("\n  ");
+    +  Object.keys(commands).join("\n  ");
 
 const main = () => {
     const command = process.argv[2];
     const param1 = process.argv[3];
-    const action = Actions[command];
+    const action = commands[command];
 
     const result = action !== undefined 
         ? dictToLines(action(param1)) 
