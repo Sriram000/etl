@@ -1,16 +1,11 @@
-import commands from './command.mjs';
-import { dictToLines } from './lib.mjs';
-import getHelpText from './getHelpText.mjs';
+import execute from "./index.mjs";
 
 const main = () => {
     const command = process.argv[2];
-    const param1 = process.argv[3];
-    const action = commands[command];
+    const param = process.argv[3];
 
-    const result = action !== undefined 
-        ? dictToLines(action(param1)) 
-        : getHelpText(command);
-        
+    const result = execute(command, param);
+
     console.log(result);
 }
 

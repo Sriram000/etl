@@ -1,7 +1,5 @@
 import promptSync from 'prompt-sync';
-import commands from './command.mjs';
-import { dictToLines } from './lib.mjs';
-import getHelpText from './getHelpText.mjs';
+import execute from "./index.mjs";
 
 const prompt = promptSync();
 
@@ -14,12 +12,8 @@ const main = function() {
             break;
         }
         else {
-            const action = commands[command];
-
-            const result = action !== undefined 
-                ? dictToLines(action(prompt("param:"))) 
-                : getHelpText(command);
-                
+            const param = prompt("param:");
+            const result = execute(command, param);
             console.log(result);
         }     
     }
