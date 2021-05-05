@@ -6,32 +6,24 @@ const processData = (shops) => {
     const shopNames = shops.map((shops) => shops.shopName);
     const denormalized = denormalizeShops(shops);
     const priceMatrix = buildItemPriceMatrix(denormalized);
+    const itemNames = Object.keys(priceMatrix);
     const minimumPrices = getMinimumPrices(priceMatrix);
     const maximumPrices = getMaximumPrices(priceMatrix);
-    const itemNames = Object.keys(priceMatrix);
-    const items = itemNames.map((itemName) => {
-        const shopPrices = shopNames.map((shopName) => {
-            const itemPrices = priceMatrix[itemName][shopName];
-            const minimum = itemPrices === minimumPrices[itemName];
-            const maximum = itemPrices === maximumPrices[itemName];
-            const price = itemPrices !== undefined ? itemPrices : "-";
-            
-            return {
-                price,
-                minimum,
-                maximum,
-            }
-        });
-
-        return {
-            item: itemName,
-            shopPrices,
-        }
-    });
-
+    
     return {
         shopNames,
-        items,
+        items: itemNames.map((itemName) => ({
+            item: itemName,
+            shopPrices: shopNames.map((shopName) => {
+                const itemPrice = priceMatrix[itemName][shopName];
+                
+                return {
+                    price: itemPrice !== undefined ? itemPrice : "-",
+                    minimum: itemPrice === minimumPrices[itemName],
+                    maximum: itemPrice === maximumPrices[itemName],
+                }
+            }),
+        })),
     }
 }
 
