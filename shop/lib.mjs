@@ -1,21 +1,17 @@
 import utils from '@laufire/utils';
 
-const { merge } = utils.collection;
+const { summarize } = utils.crunch;
 
 const unique = (array) => [...new Set(array)];
 
 const flatten = (data) => [].concat.apply([], data);
 
+
 const matrix = (denormalized, ...keys) => {
-  const branchKeys = keys.slice(0, -2);
-  const [leafKey, valueKey] = keys.slice(-2);
+  const indexKeys = keys.slice(0, -1);
+  const [valueKey] = keys.slice(-1);
   
-  return merge(...denormalized.map((item) =>
-      branchKeys.reduce(
-          (t, branchKey) => ({[item[branchKey]]: t}),
-          {[item[leafKey]]: item[valueKey]}
-      )
-  ));
+  return summarize(denormalized, (item) => item[valueKey], ...indexKeys);
 }
 
 const dictToLines = (dict) =>
